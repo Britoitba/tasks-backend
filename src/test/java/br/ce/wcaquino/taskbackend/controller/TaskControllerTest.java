@@ -67,7 +67,7 @@ public class TaskControllerTest {
     @Test
     public void shouldSaveTaskWithSuccess() throws ValidationException {
         Task todo = new Task();
-        todo.setTask("Testando save com sucesso");
+        todo.setTask("Teste de sucesso");
         todo.setDueDate(LocalDate.now());
         taskController.save(todo);
         Mockito.verify(taskRepo).save(todo);
