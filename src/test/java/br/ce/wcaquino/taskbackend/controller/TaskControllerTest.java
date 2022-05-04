@@ -29,6 +29,7 @@ public class TaskControllerTest {
     @Test
     public void shouldNotSaveTaskWithoutDescription() {
         Task todo = new Task();
+        todo.setTask("Testando");
         todo.setDueDate(LocalDate.now());
         try{
             taskController.save(todo);
