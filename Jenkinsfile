@@ -31,24 +31,14 @@ pipeline{
                     // waitForQualityGate abortPipeline: true
                 }
             }
-
-            // steps{
-            //     timeout(time: 1, unit: 'HOURS') {
-            //         def qg = waitForQualityGate()
-            //         if (qg.status != 'OK') {
-            //             abortPipeline: true
-            //         }
-            //      }
-            // }
         }
 
-
-        stage('Deploy'){
+        stage('Deploy Backend'){
             steps{
                 echo 'Deploying...'
+                deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
             }
         }
     }
 
 }
-
