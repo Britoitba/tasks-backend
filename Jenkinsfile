@@ -62,7 +62,7 @@ pipeline{
         stage('Funcional Tests'){
             steps{
                 dir('funcional-tests'){
-                    git credentialsId: 'github_login', url: 'https://github.com/Britoitba/tasks-funcional-test'
+                    git branch: 'main', credentialsId: 'github_login', url: 'https://github.com/Britoitba/tasks-funcional-test'
                     bat './gradlew test'
                 }
             }
