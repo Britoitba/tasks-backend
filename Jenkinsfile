@@ -53,9 +53,17 @@ pipeline{
                 dir('tasks-frontend'){
                     git credentialsId: 'github_login', url: 'https://github.com/Britoitba/tasks-frontend'
                     echo 'Building...'
-                    bat 'mvn clean package -DskipTests=true'
+                    bat 'mvn clean package'
                     echo 'Deploying...'
                     deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks', war: 'target/tasks.war'   
+                }
+            }
+        }
+        stage('Funcional Tests'){
+            steps{
+                dir('funcional-tests'){
+                    git credentialsId: 'github_login', url: 'https://github.com/Britoitba/tasks-funcional-test'
+                    bat './gradlew test'
                 }
             }
         }
