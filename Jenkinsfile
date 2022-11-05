@@ -43,7 +43,7 @@ pipeline{
         stage('API Tests'){
             steps{
                 git credentialsId: 'github_login', url: 'https://github.com/Britoitba/tasks-api-test'
-                bat 'mvn test'
+                bat './gradlew test'
             }
         }
     }
