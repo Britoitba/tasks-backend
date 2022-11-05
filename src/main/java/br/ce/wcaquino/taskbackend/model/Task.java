@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Entity
 public class Task {
 
-	public Long id;
+	private Long id;
 	
 	@Column(nullable = false)
 	public String task;
