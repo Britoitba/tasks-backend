@@ -5,13 +5,13 @@ pipeline{
         stage('Build'){
             steps{
                 echo 'Building...'
-                sh 'mvn clean package -DskipTests=true'
+                bat 'mvn clean package -DskipTests=true'
             }
         }
         stage('Unit Tests'){
             steps{
                 echo 'Testing...'
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
         stage('Sonar Analisys'){
@@ -20,7 +20,7 @@ pipeline{
             }
             steps{
                 withSonarQubeEnv('SONAR_LOCAL'){
-                    sh "${scanner}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBack -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d23fd321258d632c2b83d57f54066cec6f80d7ea -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**Application.java"
+                    bat "${scanner}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBack -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d23fd321258d632c2b83d57f54066cec6f80d7ea -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**Application.java"
                 }
             }
         }
