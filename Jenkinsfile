@@ -48,6 +48,14 @@ pipeline{
                 }
             }
         }
+        stage('Deploy Front'){
+            steps{
+                dir('tasks-frontend'){
+                    git credentialsId: 'github_login', url: 'https://github.com/Britoitba/tasks-frontend'
+                  deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks', war: 'target/tasks.war'   
+                }
+            }
+        }
     }
 
 }
