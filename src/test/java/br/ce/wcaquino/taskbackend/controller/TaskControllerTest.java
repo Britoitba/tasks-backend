@@ -3,9 +3,9 @@ package br.ce.wcaquino.taskbackend.controller;
 import br.ce.wcaquino.taskbackend.model.Task;
 import br.ce.wcaquino.taskbackend.repo.TaskRepo;
 import br.ce.wcaquino.taskbackend.utils.ValidationException;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -21,7 +21,7 @@ public class TaskControllerTest {
     @InjectMocks
     private TaskController taskController;
 
-    @Before
+    @BeforeEach
     public void setup(){
         MockitoAnnotations.initMocks(this);
     }
@@ -32,9 +32,9 @@ public class TaskControllerTest {
         todo.setDueDate(LocalDate.now());
         try{
             taskController.save(todo);
-            Assert.fail("should fall into the Exception");
+            Assertions.fail("should fall into the Exception");
         }catch(Exception e){
-            Assert.assertEquals("Fill the task description", e.getMessage());
+            Assertions.assertEquals("Fill the task description", e.getMessage());
         }
     }
 
@@ -44,9 +44,9 @@ public class TaskControllerTest {
         todo.setTask("Testando sem Data");
         try{
             taskController.save(todo);
-            Assert.fail("should fall into the Exception");
+            Assertions.fail("should fall into the Exception");
         }catch (Exception e){
-            Assert.assertEquals("Fill the due date", e.getMessage());
+            Assertions.assertEquals("Fill the due date", e.getMessage());
         }
     }
 
@@ -58,9 +58,9 @@ public class TaskControllerTest {
         todo.setDueDate(date);
         try{
             taskController.save(todo);
-            Assert.fail("should fall into the Exception");
+            Assertions.fail("should fall into the Exception");
         }catch (Exception e){
-            Assert.assertEquals("Due date must not be in past", e.getMessage());
+            Assertions.assertEquals("Due date must not be in past", e.getMessage());
         }
     }
 
