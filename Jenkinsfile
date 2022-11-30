@@ -75,5 +75,12 @@ pipeline{
             }
         }
     }
+    post{
+        always{
+            junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml
+            , api-test/build/test-results/test/*.xml
+            , funcional-tests/build/test-results/test/*.xml'
+        }
+    }
 
 }
